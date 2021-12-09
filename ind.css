@@ -1,0 +1,235 @@
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+input{
+padding: 0;
+margin: 0;
+border: 0;
+border: none;
+}
+input {
+    outline:none;
+}
+
+
+body{
+    background-color:rgb(53, 53, 53);
+}
+
+header h1{
+    color: rgb(196, 196, 196);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    text-align: center;
+    border-bottom: 1px solid rgb(196, 196, 196);
+}
+.menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.main-inp{
+    font-size: 30px;
+    padding-left: 20px;
+    display: block;
+    margin: 20px auto 10px;
+    width: 25%;
+    height: 50px;
+    border-radius: 20px;
+    background-color: rgb(196, 196, 196);
+}
+
+.main-but{
+    text-align: center;
+    line-height: 29px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: rgb(199, 199, 199);
+    margin: auto auto;
+    background-color: rgba(245, 107, 222, 0.4);;
+    width: 10%;
+    height: 30px;
+    border-radius: 20px;
+    border: 1px solid rgb(196, 196, 196);
+}
+
+.empty{
+    display: none;
+    margin: 15px auto 0;
+    color: rgb(0, 0, 0, 0.5);
+    border: 1px solid rgb(0, 0, 0, 0.3);
+}
+.empty:hover{
+    cursor: pointer;
+}
+.empty2{
+    display: none;
+    margin: 15px auto 0;
+    color: rgb(0, 0, 0, 0.5);
+    border: 1px solid rgb(0, 0, 0, 0.3);
+}
+.empty2:hover{
+    cursor: pointer;
+}
+.main-but:hover{
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(233, 233, 233, 0.5);
+}
+
+.AllDoList{
+    justify-content: space-around;
+    display: flex;
+    width: 80%;
+    margin: auto auto;
+}
+.list1{
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    align-items: center;
+    
+}
+.list2{
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    align-items: center;
+    border: 1px solid rgba(233, 233, 233, 0.5);
+    font-size: 50px;
+    height: 100px;
+    line-height: 100px;
+}
+.list2:hover{
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.keys{
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 15%;
+    align-items: center;
+    
+    font-size: 20px;
+    height: 100px;
+    
+}
+.on, .off{
+    border: 1px solid rgba(233, 233, 233, 0.5);
+    width: 100%;
+   text-align: center;
+    height: 25px;
+}
+.on, .off:hover{
+    cursor: pointer;
+}
+.main-str{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5%;
+    width: 100%;
+}
+.str{
+    width: 60%;
+    height: 2.5rem;
+    text-align: center;
+    color: rgb(226, 161, 161);
+    font-size: 2rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+.str-but-red, .str-but-del, .str-but-did{
+    text-align: center;
+    width: 8%;
+    color: rgb(226, 161, 161);
+    font-size: 1.5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.str-but-red, .str-but-del:hover, .str-but-did{
+    cursor: pointer;
+}
+.str-but-red{
+    display: flex;
+    justify-content: center;
+}
+.str-but-red img{
+    width: 100%;
+}
+.str-but-did{
+    display: flex;
+    justify-content: center;
+}
+.str-but-did img{
+    width: 100%;
+}
+.str-but-del{
+    display: flex;
+    justify-content: center;
+}
+.str-but-del img{
+    width: 100%;
+}
+.str2:hover{
+    cursor: pointer;
+}
+
+.new-main{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.str2{
+    width: 60%;
+    height: 2.5rem;
+    text-align: center;
+    color: rgba(253, 253, 253, 0.2);
+    font-size: 2rem;
+    text-decoration: line-through;
+}
+.newBut1{
+    width: 18%;
+    text-align: center;
+    color: rgb(0, 0, 0, 0.2);
+    margin-right: 2%;
+    height: 1.2rem;
+    border: 1px solid rgb(0, 0, 0, 0.2);
+}
+.newBut1{
+    cursor: pointer;
+}
+.inp2{
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+}

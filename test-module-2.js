@@ -44,6 +44,8 @@ const DoIt = () => {
     mainList.removeChild(mainList.firstChild);
   }
   arr.map((item, index) => {
+    const {text, isCheck} = item;
+    
     const newMain = document.createElement("div");
     newMain.className = "main-str";
     newMain.id = `main-str-${index}`;
@@ -51,9 +53,8 @@ const DoIt = () => {
 
     const str = document.createElement("div");
     str.id = `str-${index}`;
-    arr[index].isCheck ? str.className = "str2" : str.className = "str";
-
-    str.innerHTML = item.text;
+    isCheck ? str.className = "str2" : str.className = "str";
+    str.innerHTML = text;
     newMain.appendChild(str);
 
     strButRed = document.createElement("div");
@@ -63,7 +64,7 @@ const DoIt = () => {
     strButRed.appendChild(img);
     strButRed.addEventListener("click", () => redact(str, index));
     newMain.appendChild(strButRed);
-    arr[index].isCheck ? strButRed.style = "display:none": '';
+    isCheck ? strButRed.style = "display:none": '';
 
     const strButDel = document.createElement("div");
     strButDel.className = "str-but-del";
@@ -78,7 +79,7 @@ const DoIt = () => {
     const img2 = document.createElement("img");
     img2.src = "img/to_do_icon_153795.png";
     strButDid.appendChild(img2);
-    strButDid.checked = item.isCheck;
+    strButDid.checked = isCheck;
     strButDid.addEventListener("click", () => checkbox(index));
     newMain.appendChild(strButDid);
 

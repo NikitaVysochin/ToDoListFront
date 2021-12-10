@@ -80,25 +80,25 @@ header h1 {
   border: 1px solid rgb(196, 196, 196);
 }
 
-.empty {
+.empty-block {
   display: none;
   margin: 15px auto 0;
   color: rgb(0, 0, 0, 0.5);
   border: 1px solid rgb(0, 0, 0, 0.3);
 }
 
-.empty:hover {
+.empty-block:hover {
   cursor: pointer;
 }
 
-.empty2 {
+.empty-block2 {
   display: none;
   margin: 15px auto 0;
   color: rgb(0, 0, 0, 0.5);
   border: 1px solid rgb(0, 0, 0, 0.3);
 }
 
-.empty2:hover {
+.empty-block2:hover {
   cursor: pointer;
 }
 

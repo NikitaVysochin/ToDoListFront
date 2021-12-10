@@ -1,8 +1,8 @@
 const mainList = document.querySelector(".main-list");
 const deleteAll = document.querySelector(".delete-list");
 const but = document.querySelector(".main-but");
-const empty = document.querySelector(".empty");
-const empty2 = document.querySelector(".empty2");
+const emptyBlock = document.querySelector(".empty-block");
+const emptyBlock2 = document.querySelector(".empty-block2");
 let arr = JSON.parse(localStorage.getItem("arr")) || [];
 let InpVal = "";
 let input = null;
@@ -16,14 +16,14 @@ window.onload = init = () => {
   DoIt();
 };
 
-funcdeleteAll = () => {
+const funcdeleteAll = () => {
   arr = [];
   DoIt();
   localStorage.clear();
 }
 deleteAll.addEventListener("click", funcdeleteAll);
 
-onClickMainBut = () => {
+const onClickMainBut = () => {
   arr.push({
     text: InpVal,
     isCheck: false,
@@ -35,11 +35,11 @@ onClickMainBut = () => {
 }
 but.addEventListener("click", onClickMainBut);
 
-upDatevalue = (event) => {
+const upDatevalue = (event) => {
   InpVal = event.target.value;
 };
 
-DoIt = () => {
+const DoIt = () => {
   while (mainList.firstChild) {
     mainList.removeChild(mainList.firstChild);
   }
@@ -49,7 +49,7 @@ DoIt = () => {
     newMain.id = `main-str-${index}`;
     mainList.appendChild(newMain);
 
-    let str = document.createElement("div");
+    const str = document.createElement("div");
     str.id = `str-${index}`;
     if (arr[index].isCheck) {
       str.className = "str2";
@@ -91,12 +91,12 @@ DoIt = () => {
     arr.sort(func = (a, b) => {
       return a.isCheck - b.isCheck;
     });
-    empty2.addEventListener("click", () => dobav(index, str));
+    emptyBlock2.addEventListener("click", () => dobav(str));
     localStorage.setItem("arr", JSON.stringify(arr));
   });
 }
 
-checkbox = (index) => {
+const checkbox = (index) => {
   arr[index].isCheck = !arr[index].isCheck;
   arr.sort(func = (a, b) => {
     return a.isCheck - b.isCheck;
@@ -105,7 +105,7 @@ checkbox = (index) => {
   localStorage.setItem("arr", JSON.stringify(arr));
 }
 
-deleteStr = (newMain, index) => {
+const deleteStr = (newMain, index) => {
   arr.splice(index, 1);
   newMain.remove();
   DoIt();
@@ -113,8 +113,8 @@ deleteStr = (newMain, index) => {
   localStorage.setItem("arr", JSON.stringify(arr));
 }
 
-redact = (str, index) => {
-  let newInp = document.createElement("input");
+const redact = (str, index) => {
+  const newInp = document.createElement("input");
   newInp.className = "inp2";
   newInp.value = arr[index].text;
   str.innerHTML = "";
@@ -126,12 +126,12 @@ redact = (str, index) => {
   });
 
   console.log("redact", arr);
-  empty.style = "display:block";
-  empty2.style = "display:block";
+  emptyBlock.style = "display:block";
+  emptyBlock2.style = "display:block";
   localStorage.setItem("arr", JSON.stringify(arr));
 }
 
-dobav = (index, str) => {
+const dobav = (str) => {
   console.log("dobav", editValue, proindex);
   arr[proindex].text = editValue;
   if (str.id == `str-${proindex}`) {
@@ -139,8 +139,8 @@ dobav = (index, str) => {
   }
 
   input.value = "";
-  empty.style = "display:none";
-  empty2.style = "display:none";
+  emptyBlock.style = "display:none";
+  emptyBlock2.style = "display:none";
   localStorage.setItem("arr", JSON.stringify(arr));
 }
 
@@ -148,12 +148,12 @@ const on = document.querySelector(".on");
 const off = document.querySelector(".off");
 const arr2 = [45, "qwdqw"];
 
-turnOn = () => {
+const turnOn = () => {
   localStorage.setItem("arr2", JSON.stringify(arr2));
 }
 on.addEventListener("click", turnOn);
 
-turnOff = () => {
+const turnOff = () => {
   localStorage.removeItem("arr2");
 }
 off.addEventListener("click", turnOff);

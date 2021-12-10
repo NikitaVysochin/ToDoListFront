@@ -51,11 +51,7 @@ const DoIt = () => {
 
     const str = document.createElement("div");
     str.id = `str-${index}`;
-    if (arr[index].isCheck) {
-      str.className = "str2";
-    } else {
-      str.className = "str";
-    }
+    arr[index].isCheck ? str.className = "str2" : str.className = "str";
 
     str.innerHTML = item.text;
     newMain.appendChild(str);
@@ -67,9 +63,7 @@ const DoIt = () => {
     strButRed.appendChild(img);
     strButRed.addEventListener("click", () => redact(str, index));
     newMain.appendChild(strButRed);
-    if (arr[index].isCheck) {
-      strButRed.style = "display:none";
-    }
+    arr[index].isCheck ? strButRed.style = "display:none": '';
 
     const strButDel = document.createElement("div");
     strButDel.className = "str-but-del";

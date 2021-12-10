@@ -25,12 +25,14 @@ dl,
 dd {
   margin: 0;
 }
+
 input {
   padding: 0;
   margin: 0;
   border: 0;
   border: none;
 }
+
 input {
   outline: none;
 }
@@ -45,11 +47,13 @@ header h1 {
   text-align: center;
   border-bottom: 1px solid rgb(196, 196, 196);
 }
+
 .menu {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 .main-inp {
   font-size: 30px;
   padding-left: 20px;
@@ -82,18 +86,22 @@ header h1 {
   color: rgb(0, 0, 0, 0.5);
   border: 1px solid rgb(0, 0, 0, 0.3);
 }
+
 .empty:hover {
   cursor: pointer;
 }
+
 .empty2 {
   display: none;
   margin: 15px auto 0;
   color: rgb(0, 0, 0, 0.5);
   border: 1px solid rgb(0, 0, 0, 0.3);
 }
+
 .empty2:hover {
   cursor: pointer;
 }
+
 .main-but:hover {
   cursor: pointer;
   box-shadow: 0 0 10px rgba(233, 233, 233, 0.5);
@@ -105,14 +113,16 @@ header h1 {
   width: 80%;
   margin: auto auto;
 }
-.list1 {
+
+.main-list{
   margin-top: 10%;
   display: flex;
   flex-direction: column;
   width: 45%;
   align-items: center;
 }
-.list2 {
+
+.delete-list {
   margin-top: 10%;
   display: flex;
   flex-direction: column;
@@ -123,10 +133,12 @@ header h1 {
   height: 100px;
   line-height: 100px;
 }
-.list2:hover {
+
+.delete-list:hover {
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
 .keys {
   margin-top: 10%;
   display: flex;
@@ -138,23 +150,25 @@ header h1 {
   font-size: 20px;
   height: 100px;
 }
-.on,
-.off {
+
+.on, .off {
   border: 1px solid rgba(233, 233, 233, 0.5);
   width: 100%;
   text-align: center;
   height: 25px;
 }
-.on,
-.off:hover {
+
+.on, .off:hover {
   cursor: pointer;
 }
+
 .main-str {
   display: flex;
   justify-content: space-between;
   margin-bottom: 5%;
   width: 100%;
 }
+
 .str {
   width: 60%;
   height: 2.5rem;
@@ -165,41 +179,45 @@ header h1 {
   overflow: hidden;
 }
 
-.str-but-red,
-.str-but-del,
-.str-but-did {
+.str-but-red, .str-but-del, .str-but-did {
   text-align: center;
   width: 8%;
   color: rgb(226, 161, 161);
   font-size: 1.5rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-.str-but-red,
-.str-but-del:hover,
-.str-but-did {
+
+.str-but-red, .str-but-del:hover, .str-but-did {
   cursor: pointer;
 }
+
 .str-but-red {
   display: flex;
   justify-content: center;
 }
+
 .str-but-red img {
   width: 100%;
 }
+
 .str-but-did {
   display: flex;
   justify-content: center;
 }
+
 .str-but-did img {
   width: 100%;
 }
+
 .str-but-del {
   display: flex;
   justify-content: center;
 }
+
 .str-but-del img {
   width: 100%;
 }
+
 .str2:hover {
   cursor: pointer;
 }
@@ -209,6 +227,7 @@ header h1 {
   align-items: center;
   width: 100%;
 }
+
 .str2 {
   width: 60%;
   height: 2.5rem;
@@ -217,6 +236,7 @@ header h1 {
   font-size: 2rem;
   text-decoration: line-through;
 }
+
 .newBut1 {
   width: 18%;
   text-align: center;
@@ -225,9 +245,11 @@ header h1 {
   height: 1.2rem;
   border: 1px solid rgb(0, 0, 0, 0.2);
 }
+
 .newBut1 {
   cursor: pointer;
 }
+
 .inp2 {
   width: 100%;
   height: 100%;

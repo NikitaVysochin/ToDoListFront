@@ -44,7 +44,7 @@ const DoIt = () => {
     mainList.removeChild(mainList.firstChild);
   }
   arr.map((item, index) => {
-    const {text, isCheck} = item;
+    const { text, isCheck } = item;
     
     const newMain = document.createElement("div");
     newMain.className = "main-str";
@@ -53,7 +53,7 @@ const DoIt = () => {
 
     const str = document.createElement("div");
     str.id = `str-${index}`;
-    isCheck ? str.className = "str2" : str.className = "str";
+    str.className = isCheck ? "str2" : "str";
     str.innerHTML = text;
     newMain.appendChild(str);
 

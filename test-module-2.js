@@ -9,10 +9,14 @@ let input = null;
 let editValue = "";
 let proindex;
 
-
-window.onload = init = () => {
+window.onload = init = async () => {
   input = document.querySelector(".main-inp");
   input.addEventListener("change", upDatevalue);
+  const resp = await fetch("http://localhost:8000/allTasks", {
+    method: "GET",
+  });
+  const result = await resp.json();
+  arr = result.data;
   DoIt();
 };
 
@@ -20,19 +24,32 @@ const funcdeleteAll = () => {
   arr = [];
   DoIt();
   localStorage.clear();
-}
+};
 deleteAll.addEventListener("click", funcdeleteAll);
 
-const onClickMainBut = () => {
+const onClickMainBut = async () => {
   arr.push({
     text: InpVal,
     isCheck: false,
   });
+  const resp = await fetch("http://localhost:8000/createTask", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: JSON.stringify({
+      text: InpVal,
+      isCheck: false,
+    }),
+  });
+  const result = await resp.json();
+  arr = result.data;
   InpVal = "";
   input.value = "";
   DoIt();
   localStorage.setItem("arr", JSON.stringify(arr));
-}
+};
 but.addEventListener("click", onClickMainBut);
 
 const upDatevalue = (event) => {
@@ -45,7 +62,7 @@ const DoIt = () => {
   }
   arr.map((item, index) => {
     const { text, isCheck } = item;
-    
+
     const newMain = document.createElement("div");
     newMain.className = "main-str";
     newMain.id = `main-str-${index}`;
@@ -64,7 +81,7 @@ const DoIt = () => {
     strButRed.appendChild(img);
     strButRed.addEventListener("click", () => redact(str, index));
     newMain.appendChild(strButRed);
-    isCheck ? strButRed.style = "display:none": '';
+    isCheck ? (strButRed.style = "display:none") : "";
 
     const strButDel = document.createElement("div");
     strButDel.className = "str-but-del";
@@ -83,30 +100,40 @@ const DoIt = () => {
     strButDid.addEventListener("click", () => checkbox(index));
     newMain.appendChild(strButDid);
 
-    arr.sort(func = (a, b) => {
-      return a.isCheck - b.isCheck;
-    });
+    arr.sort(
+      (a, b) =>  a.isCheck - b.isCheck 
+    );
     emptyBlock2.addEventListener("click", () => dobav(str));
     localStorage.setItem("arr", JSON.stringify(arr));
   });
-}
+};
 
 const checkbox = (index) => {
   arr[index].isCheck = !arr[index].isCheck;
-  arr.sort(func = (a, b) => {
-    return a.isCheck - b.isCheck;
-  });
+  arr.sort(
+     (a, b) =>  a.isCheck - b.isCheck 
+  );
   DoIt();
   localStorage.setItem("arr", JSON.stringify(arr));
-}
+};
 
-const deleteStr = (newMain, index) => {
-  arr.splice(index, 1);
-  newMain.remove();
+const deleteStr = async (newMain, index) => {
+  const resp = await fetch(
+    `http://localhost:8000/deleteTask?id=${arr[index].id}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+      },
+    }
+  );
+  const result = await resp.json();
+  arr = result.data;
   DoIt();
 
   localStorage.setItem("arr", JSON.stringify(arr));
-}
+};
 
 const redact = (str, index) => {
   const newInp = document.createElement("input");
@@ -124,20 +151,35 @@ const redact = (str, index) => {
   emptyBlock.style = "display:block";
   emptyBlock2.style = "display:block";
   localStorage.setItem("arr", JSON.stringify(arr));
-}
+};
 
-const dobav = (str) => {
-  console.log("dobav", editValue, proindex);
+const dobav = async (str) => {
   arr[proindex].text = editValue;
   if (str.id == `str-${proindex}`) {
     str.innerHTML = arr[proindex].text;
   }
 
+  const { id } = arr[proindex];
+  const resp = await fetch("http://localhost:8000/updateTask", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: JSON.stringify({
+      text: editValue,
+      isCheck: false,
+      id,
+    }),
+  });
+  const result = await resp.json();
+  arr = result.data;
+
   input.value = "";
   emptyBlock.style = "display:none";
   emptyBlock2.style = "display:none";
   localStorage.setItem("arr", JSON.stringify(arr));
-}
+};
 
 const on = document.querySelector(".on");
 const off = document.querySelector(".off");
@@ -145,10 +187,10 @@ const arr2 = [45, "qwdqw"];
 
 const turnOn = () => {
   localStorage.setItem("arr2", JSON.stringify(arr2));
-}
+};
 on.addEventListener("click", turnOn);
 
 const turnOff = () => {
   localStorage.removeItem("arr2");
-}
+};
 off.addEventListener("click", turnOff);

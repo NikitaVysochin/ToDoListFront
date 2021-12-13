@@ -15,8 +15,7 @@ window.onload = init = async () => {
   const resp = await fetch("http://localhost:8000/allTasks", {
     method: "GET",
   });
-  let result = await resp.json();
-  console.log(result);
+  const result = await resp.json();
   arr = result.data;
   DoIt();
 };
@@ -44,7 +43,7 @@ const onClickMainBut = async () => {
       isCheck: false,
     }),
   });
-  let result = await resp.json();
+  const result = await resp.json();
   arr = result.data;
   InpVal = "";
   input.value = "";
@@ -102,9 +101,7 @@ const DoIt = () => {
     newMain.appendChild(strButDid);
 
     arr.sort(
-      (func = (a, b) => {
-        return a.isCheck - b.isCheck;
-      })
+      (a, b) =>  a.isCheck - b.isCheck 
     );
     emptyBlock2.addEventListener("click", () => dobav(str));
     localStorage.setItem("arr", JSON.stringify(arr));
@@ -114,18 +111,13 @@ const DoIt = () => {
 const checkbox = (index) => {
   arr[index].isCheck = !arr[index].isCheck;
   arr.sort(
-    (func = (a, b) => {
-      return a.isCheck - b.isCheck;
-    })
+     (a, b) =>  a.isCheck - b.isCheck 
   );
   DoIt();
   localStorage.setItem("arr", JSON.stringify(arr));
 };
 
 const deleteStr = async (newMain, index) => {
-  //arr.splice(index, 1);
-  //newMain.remove();
-  console.log(arr[index]);
   const resp = await fetch(
     `http://localhost:8000/deleteTask?id=${arr[index].id}`,
     {
@@ -136,7 +128,7 @@ const deleteStr = async (newMain, index) => {
       },
     }
   );
-  let result = await resp.json();
+  const result = await resp.json();
   arr = result.data;
   DoIt();
 
@@ -175,14 +167,13 @@ const dobav = async (str) => {
       "Access-Control-Allow-Origin": "*",
     },
     body: JSON.stringify({
-      text: str.innerHTML,
+      text: editValue,
       isCheck: false,
       id,
     }),
   });
-  let result = await resp.json();
+  const result = await resp.json();
   arr = result.data;
-  console.log("dobav", str.innerHTML);
 
   input.value = "";
   emptyBlock.style = "display:none";

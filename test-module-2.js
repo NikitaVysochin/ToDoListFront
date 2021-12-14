@@ -108,10 +108,9 @@ const DoIt = () => {
   });
 };
 
-const  checkbox = async (index, text) => {
-  arr[index].isCheck = !arr[index].isCheck;
-
-  const { _id } = arr[index];
+const  checkbox = async (index) => {
+  const { _id, text, isCheck } = arr[index];
+  
   const resp = await fetch("http://localhost:8000/updateTask", {
     method: "PATCH",
     headers: {
@@ -119,8 +118,8 @@ const  checkbox = async (index, text) => {
       "Access-Control-Allow-Origin": "*",
     },
     body: JSON.stringify({
-      text: arr[index].text,
-      isCheck: arr[index].isCheck,
+      text: text,
+      isCheck: !isCheck,
       _id,
     }),
   });
@@ -186,7 +185,7 @@ const dobav = async (str) => {
     body: JSON.stringify({
       text: editValue,
       isCheck: false,
-      _id: _id,
+      _id,
     }),
   });
   const result = await resp.json();

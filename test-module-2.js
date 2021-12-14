@@ -12,11 +12,14 @@ let proindex;
 window.onload = init = async () => {
   input = document.querySelector(".main-inp");
   input.addEventListener("change", upDatevalue);
-  const resp = await fetch("http://localhost:8000/allTasks", {
+  const resp = await fetch("http://localhost:8000/getAllTasks", {
     method: "GET",
   });
   const result = await resp.json();
   arr = result.data;
+  arr.sort(
+    (a, b) =>  a.isCheck - b.isCheck 
+ );
   DoIt();
 };
 
@@ -97,29 +100,41 @@ const DoIt = () => {
     img2.src = "img/to_do_icon_153795.png";
     strButDid.appendChild(img2);
     strButDid.checked = isCheck;
-    strButDid.addEventListener("click", () => checkbox(index));
+    strButDid.addEventListener("click", () => checkbox(index, text));
     newMain.appendChild(strButDid);
 
-    arr.sort(
-      (a, b) =>  a.isCheck - b.isCheck 
-    );
     emptyBlock2.addEventListener("click", () => dobav(str));
     localStorage.setItem("arr", JSON.stringify(arr));
   });
 };
 
-const checkbox = (index) => {
-  arr[index].isCheck = !arr[index].isCheck;
+const  checkbox = async (index) => {
+  const { _id, text, isCheck } = arr[index];
+  
+  const resp = await fetch("http://localhost:8000/updateTask", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: JSON.stringify({
+      text: text,
+      isCheck: !isCheck,
+      _id,
+    }),
+  });
+  const result = await resp.json();
+  arr = result.data;
   arr.sort(
-     (a, b) =>  a.isCheck - b.isCheck 
-  );
+    (a, b) =>  a.isCheck - b.isCheck 
+ );
   DoIt();
   localStorage.setItem("arr", JSON.stringify(arr));
 };
 
 const deleteStr = async (newMain, index) => {
   const resp = await fetch(
-    `http://localhost:8000/deleteTask?id=${arr[index].id}`,
+    `http://localhost:8000/deleteTask?id=${arr[index]._id}`,
     {
       method: "DELETE",
       headers: {
@@ -128,6 +143,7 @@ const deleteStr = async (newMain, index) => {
       },
     }
   );
+  
   const result = await resp.json();
   arr = result.data;
   DoIt();
@@ -136,9 +152,10 @@ const deleteStr = async (newMain, index) => {
 };
 
 const redact = (str, index) => {
+  editValue = str.innerHTML;
   const newInp = document.createElement("input");
   newInp.className = "inp2";
-  newInp.value = arr[index].text;
+  newInp.value = editValue;
   str.innerHTML = "";
   str.appendChild(newInp);
 
@@ -147,7 +164,6 @@ const redact = (str, index) => {
     proindex = index;
   });
 
-  console.log("redact", arr);
   emptyBlock.style = "display:block";
   emptyBlock2.style = "display:block";
   localStorage.setItem("arr", JSON.stringify(arr));
@@ -159,7 +175,7 @@ const dobav = async (str) => {
     str.innerHTML = arr[proindex].text;
   }
 
-  const { id } = arr[proindex];
+  const { _id } = arr[proindex];
   const resp = await fetch("http://localhost:8000/updateTask", {
     method: "PATCH",
     headers: {
@@ -169,7 +185,7 @@ const dobav = async (str) => {
     body: JSON.stringify({
       text: editValue,
       isCheck: false,
-      id,
+      _id,
     }),
   });
   const result = await resp.json();
